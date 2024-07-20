@@ -33,6 +33,7 @@
 \newcommand{\headerfont}[1][1]{\normalsize}
 
 \newcounter{cardCount}
+\newtoggle{mook}
 
 \newcommand{\monsterCard}[1]
 {
@@ -43,18 +44,20 @@
   \parbox[t][13.5cm]{9.5cm}{
     #1
   }%
-  \quad
+  \quad\togglefalse{mook}
 }
 
 \newcommand{\monsterName}[1]{
   \begin{center}
     \titlefont\textsc{\textbf{#1}}
   \end{center}
+  \def\internalName{#1}
 }
 
 % parameter order: level role type size? strength? mook?
 \newcommandx{\monsterType}[6][4,5,6]{ 
-  \textit{\notblank{#4}{\capitalize{#4} }{}\notblank{#5}{\capitalize{#5} }{}\nth{#1} level\notblank{#6}{ mook}{} \capitalize{#2}} [\textsc{#3}]
+  \textit{\notblank{#4}{\capitalize{#4} }{}\notblank{#5}{\capitalize{#5} }{}\nth{#1} level\notblank{#6}{ mook\toggletrue{mook}}{} \notblank{#2}{\capitalize{#2}}{\capitalize{troop}}} [\textsc{#3}]
+
 }
 
 \newcommand{\initiative}[1]{
@@ -62,7 +65,7 @@
 }
 
 \newcommand{\vulnerabilities}[1]{
-  Vulnerabilities: \capitalize{#1} \\ 
+  Vulnerabilities: \capitalize{#1}\\ 
 }
 
 \newcommand{\trait}[2]
@@ -95,7 +98,7 @@
 
 \newcommand{\triggeredActions}[1]{
   \smallskip
-  {\underline{\textsc{Triggered Actions}}}
+  {\underline{\textsc{Triggered Attacks}}}
   \begin{itemize}
       #1
   \end{itemize}
@@ -103,7 +106,7 @@
 
 \newcommand{\nastierTraits}[1]{
   \smallskip
-  {\underline{\textsc{Nastier Traits}}}
+  {\underline{\textsc{Nastier Specials}}}
   \begin{itemize}
       #1
   \end{itemize}
@@ -115,9 +118,15 @@
 		\defensefont{}
 		\begin{tabular}{*{2}{p{3cm}}}
 			\textbf{AC} #1 \\
-			\textbf{PD} #2 & \textbf{HP #4} \\
+			\textbf{PD} #2 & \textbf{HP #4 \iftoggle{mook}{(mook)}{}} \\
 			\textbf{MD} #3
 		\end{tabular}
   \end{center}
+  \iftoggle{mook}
+  {
+    \traits{
+      \trait{Mook}{Kill one \internalName{} for every #4 damage dealt to the mob.}
+    }
+  }{}
 }
 
