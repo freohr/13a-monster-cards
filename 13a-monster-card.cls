@@ -56,8 +56,8 @@
 
 % parameter order: level role type size? strength? mook?
 \newcommandx{\monsterType}[6][4,5,6]{ 
-  \textit{\notblank{#4}{\capitalize{#4} }{}\notblank{#5}{\capitalize{#5} }{}\nth{#1} level\notblank{#6}{ mook\toggletrue{mook}}{} \notblank{#2}{\capitalize{#2}}{\capitalize{troop}}} [\textsc{#3}]
-
+  \notblank{#6}{\toggletrue{mook}}{\togglefalse{mook}}
+  \textit{\notblank{#4}{\capitalize{#4} }{}\notblank{#5}{\capitalize{#5} }{}\nth{#1} level\notblank{#6}{ mook}{} \notblank{#2}{\capitalize{#2}}{\capitalize{troop}}} [\textsc{#3}]\\
 }
 
 \newcommand{\initiative}[1]{
