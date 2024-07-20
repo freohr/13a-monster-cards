@@ -1,0 +1,6 @@
+
+Latex packages to create monster cards
+
+1. Tikz: used to draw graphics, can draw blocks in a tree-like graph -> everything is drawn relative to other linked blocks, 
+
+\begin{lrbox}
