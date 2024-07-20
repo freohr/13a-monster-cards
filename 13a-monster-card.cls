@@ -2,7 +2,7 @@
 \ProvidesClass{13a-monster-card-par}[2024-07-12 Cards for monsters in the 13th Age RPG]
 
 \LoadClass[a4paper]{article}
-\RequirePackage[portrait,left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+\RequirePackage[portrait,left=0.7cm,right=1cm,top=0.8cm,bottom=0.8cm]{geometry}
 
 \RequirePackage{calc}
 \RequirePackage{hanging}
@@ -12,6 +12,7 @@
 \RequirePackage{ifthen}
 \RequirePackage[super]{nth}
 \RequirePackage{stringstrings}
+\RequirePackage{intcalc}
 
 \RequirePackage{fontspec}
 \setmainfont{Fira Sans}
@@ -20,9 +21,9 @@
 
 \pagestyle{empty}
 
-\setlist[itemize]{label=,noitemsep}
-\setlist[itemize,1]{left=0pt}
-\setlist[itemize,2]{left=0.5cm}
+\setlist[itemize]{label=,noitemsep,itemindent=-0.5cm,left=0pt}
+
+\hbadness=10000
 
 \newcommand{\titlefont}[1][1]{\large}
 \newcommand{\sourcefont}[1][1]{\footnotesize}
@@ -31,11 +32,18 @@
 \newcommand{\bodyfont}[1][1]{\small}
 \newcommand{\headerfont}[1][1]{\normalsize}
 
+\newcounter{cardCount}
+
 \newcommand{\monsterCard}[1]
 {
-  \parbox[t][13.5cm]{9cm}{
+  \stepcounter{cardCount}
+  \ifnumgreater{\intcalcMod{\value{cardCount}}{4}}{1}{
+    \vspace{0.8cm}
+  }{}
+  \parbox[t][13.5cm]{9.5cm}{
     #1
-  }
+  }%
+  \quad
 }
 
 \newcommand{\monsterName}[1]{
