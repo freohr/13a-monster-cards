@@ -54,3 +54,4 @@ If a block is not present in the original statblock, you can simply skip the ass
 - A smaller A7 format for really simple statblocks
 - A larger A5 format for more complicated statlocks
 - A letter-sized layout for printing
+- Setup a package and submit it to CTAN
