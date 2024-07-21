@@ -55,3 +55,4 @@ If a block is not present in the original statblock, you can simply skip the ass
 - A larger A5 format for more complicated statlocks
 - A letter-sized layout for printing
 - Setup a package and submit it to CTAN
+- Setup a web page to parse statblock and automatically output the corresponding LaTeX block, based on my [existing parser](https://github.com/freohr/obsidian-13A-monster-parser) for Obsidian and Foundry
