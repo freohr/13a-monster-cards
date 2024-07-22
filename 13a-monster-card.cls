@@ -75,41 +75,38 @@
 
 \newcommandx{\action}[3][3]{
   \item\textbf{#1} --- #2
-    \notblank{#3}
-    {
+  \notblank{#3}
+  {
     \begin{hangparas}{0.5cm}{1}
       \begin{itemize}
           #3
       \end{itemize}
     \end{hangparas}
-    }{}
+  }{}
 }
 
 \newcommand{\actions}[1]{
-  \smallskip
-  \begin{hangparas}{0.5cm}{1}
-    \begin{itemize}
-      #1
-    \end{itemize}
-  \end{hangparas}
+  \customGroup{#1}
 }
 
 \let\traits\actions
 
 \newcommand{\triggeredActions}[1]{
-  \smallskip
-  {\underline{\textsc{Triggered Attacks}}}
-  \begin{itemize}
-      #1
-  \end{itemize}
+  \customGroup[Triggered Attacks]{#1}
 }
 
 \newcommand{\nastierTraits}[1]{
-  \smallskip
-  {\underline{\textsc{Nastier Specials}}}
-  \begin{itemize}
-      #1
-  \end{itemize}
+  \customGroup[Nastier Specials]{#1}
+}
+
+\newcommand{\customGroup}[2][]{
+  \vspace{0.1cm}
+  \notblank{#1}{{\underline{\textsc{#1}}}}{}
+  \begin{hangparas}{0.5cm}{1}
+    \begin{itemize}
+      #2
+    \end{itemize}
+  \end{hangparas}
 }
 
 \newcommand{\monsterDefenses}[4]{
