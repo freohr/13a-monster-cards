@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{13a-monster-card-par}[2024-07-12 Cards for monsters in the 13th Age RPG]
+\ProvidesClass{13a-monster-card}[2024-07-25 Cards for monsters in the 13th Age RPG]
 
 \LoadClass[a4paper]{article}
-\RequirePackage[portrait,left=0.7cm,right=1cm,top=0.8cm,bottom=0.8cm]{geometry}
+\RequirePackage[portrait,left=0.6cm,right=0.9cm,top=0.7cm,bottom=0cm]{geometry}
 
 \RequirePackage{calc}
 \RequirePackage{hanging}
@@ -13,11 +13,15 @@
 \RequirePackage[super]{nth}
 \RequirePackage{stringstrings}
 \RequirePackage{intcalc}
+\RequirePackage[skip=20pt , indent=0pt]{parskip}
+\RequirePackage{multido}
+\newcommand{\Repeat}{\multido{}}
 
 \RequirePackage{fontspec}
 \setmainfont{Fira Sans}
 
 \setlength{\parindent}{0 pt}
+% \setlength{\parskip}{2pt}
 
 \pagestyle{empty}
 
@@ -39,12 +43,13 @@
 {
   \stepcounter{cardCount}
   \ifnumgreater{\intcalcMod{\value{cardCount}}{4}}{1}{
-    \vspace{0.8cm}
+    \vspace{0.75cm}
   }{}
   \parbox[t][13.5cm]{9.5cm}{
     #1
   }%
-  \quad\togglefalse{mook}
+  \togglefalse{mook}
+  \quad%
 }
 
 \newcommand{\monsterName}[1]{
@@ -56,21 +61,30 @@
 
 % parameter order: level role type size? strength? mook?
 \newcommandx{\monsterType}[6][4,5,6]{ 
+  \vspace{5pt}
   \notblank{#6}{\toggletrue{mook}}{\togglefalse{mook}}
   \textit{\notblank{#4}{\capitalize{#4} }{}\notblank{#5}{\capitalize{#5} }{}\nth{#1} level\notblank{#6}{ mook}{} \notblank{#2}{\capitalize{#2}}{\capitalize{troop}}} [\textsc{#3}]\\
 }
 
 \newcommand{\initiative}[1]{
-  Initiative +#1\\
+  Initiative +#1
 }
 
 \newcommand{\vulnerabilities}[1]{
-  Vulnerabilities: \capitalize{#1}\\ 
+  Vulnerabilities: \capitalize{#1}
 }
 
-\newcommand{\trait}[2]
+\newcommandx{\trait}[3][3]
 {
   \item\textit{#1:} #2
+  \notblank{#3}
+  {
+    \begin{hangparas}{0.5cm}{1}
+      \begin{itemize}
+          #3
+      \end{itemize}
+    \end{hangparas}
+  }{}
 }
 
 \newcommandx{\action}[3][3]{
@@ -100,17 +114,18 @@
 }
 
 \newcommand{\customGroup}[2][]{
-  \vspace{0.1cm}
+  \vfill
   \notblank{#1}{{\underline{\textsc{#1}}}}{}
+  \vspace{2pt}
   \begin{hangparas}{0.5cm}{1}
     \begin{itemize}
       #2
     \end{itemize}
-  \end{hangparas}
+  \end{hangparas}%
 }
 
 \newcommand{\monsterDefenses}[4]{
-  \vfill
+  \Repeat{10}{\vfill}
 	\begin{center}
 		\defensefont{}
 		\begin{tabular}{*{2}{p{3cm}}}
