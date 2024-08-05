@@ -63,7 +63,7 @@
 \newcommandx{\monsterType}[6][4,5,6]{ 
   \vspace{5pt}
   \notblank{#6}{\toggletrue{mook}}{\togglefalse{mook}}
-  \textit{\notblank{#4}{\capitalize{#4} }{}\notblank{#5}{\capitalize{#5} }{}\nth{#1} level\notblank{#6}{ mook}{} \notblank{#2}{\capitalize{#2}}{\capitalize{troop}}} [\textsc{#3}]\\
+  \textit{\nth{#1} level \notblank{#5}{#5 }{}\notblank{#6}{mook }{}\notblank{#2}{\capitalize{#2}}{\capitalize{troop}}} [\textsc{\notblank{#4}{\capitalize{#4} }{}#3}]\\
 }
 
 \newcommand{\initiative}[1]{
@@ -71,6 +71,7 @@
 }
 
 \newcommand{\vulnerabilities}[1]{
+  \\
   Vulnerabilities: \capitalize{#1}
 }
 
