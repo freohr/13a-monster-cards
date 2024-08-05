@@ -125,14 +125,14 @@
   \end{hangparas}%
 }
 
-\newcommand{\monsterDefenses}[4]{
+\newcommandx{\monsterDefenses}[8][2,4,6,8]{
   \Repeat{10}{\vfill}
 	\begin{center}
 		\defensefont{}
 		\begin{tabular}{*{2}{p{3cm}}}
-			\textbf{AC} #1 \\
-			\textbf{PD} #2 & \textbf{HP #4 \iftoggle{mook}{(mook)}{}} \\
-			\textbf{MD} #3
+			\textbf{AC}\notblank{#2}{\textsubscript{#2}}{} #1 \\
+			\textbf{PD}\notblank{#4}{\textsubscript{#4}}{} #3 & \textbf{HP\notblank{#8}{\textsubscript{#8}}{} #7 \iftoggle{mook}{(mook)}{}} \\
+			\textbf{MD}\notblank{#6}{\textsubscript{#6}}{} #5
 		\end{tabular}
   \end{center}
   \iftoggle{mook}
